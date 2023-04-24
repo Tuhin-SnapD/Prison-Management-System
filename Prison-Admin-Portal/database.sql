@@ -100,7 +100,7 @@ CREATE UNIQUE INDEX PRISONER_DUPL_INDEX ON Visit (Date_visit,Time_slot,Prisoner_
 CREATE UNIQUE INDEX PRISONER_ONE_DAY_LIMIT ON Visit (Date_visit,Prisoner_id);
 CREATE UNIQUE INDEX VISITOR_ONE_DAY_LIMIT ON Visit (Date_visit,Visitor_aadhaar);
 
-INSERT INTO Admin (Admin_id, Admin_uname, Admin_pwd, First_name, Last_name) VALUES (1,'admin','password','Manasvi','Alimchandani');
+INSERT INTO Admin (Admin_id, Admin_uname, Admin_pwd, First_name, Last_name) VALUES (1,'admin','password','Tuhin','Chakrabarty');
 
 INSERT INTO Officer(Officer_uname,Officer_pwd,First_name,Last_name,Title,Date_of_birth) VALUES ('officer1','officer1','Shaun','Brown','Inspector','1960-01-12');
 INSERT INTO Officer_phone (Officer_phone,Officer_id) VALUES(9988776655,1);
@@ -133,9 +133,9 @@ INSERT INTO Crime(IPC,Description) VALUES(378,'Theft.');
 INSERT INTO Crime(IPC,Description) VALUES(415,'Cheating.');
 
 
-INSERT INTO Prisoner(Prisoner_id, First_name, Last_name, Date_in, Dob, Height, Date_out, Address, Section_id, Status_inout) VALUES (1,'Rahul','Agarwal','2021-05-10','1993-09-20','190','2021-07-20','Street1,Mumbai,India','111','in');
-INSERT INTO Prisoner(Prisoner_id, First_name, Last_name, Date_in, Dob, Height, Date_out, Address, Section_id, Status_inout) VALUES (2,'Saksham','Gupta','2021-02-10','2000-05-25','200','2022-09-21','Street1,Delhi,India','222','in');
-INSERT INTO Prisoner(Prisoner_id, First_name, Last_name, Date_in, Dob, Height, Date_out, Address, Section_id, Status_inout) VALUES (3,'Piyush','Pandey','2021-05-07','1995-05-27','210','2027-03-18','Street5,Delhi,India','333','in');
+INSERT INTO Prisoner(Prisoner_id, First_name, Last_name, Date_in, Dob, Height, Date_out, Address, Section_id, Status_inout) VALUES (1,'Prisoner','Agarwal','2021-05-10','1993-09-20','190','2021-07-20','Street1,Mumbai,India','111','in');
+INSERT INTO Prisoner(Prisoner_id, First_name, Last_name, Date_in, Dob, Height, Date_out, Address, Section_id, Status_inout) VALUES (2,'Prisoner','Gupta','2021-02-10','2000-05-25','200','2022-09-21','Street1,Delhi,India','222','in');
+INSERT INTO Prisoner(Prisoner_id, First_name, Last_name, Date_in, Dob, Height, Date_out, Address, Section_id, Status_inout) VALUES (3,'Prisoner','Pandey','2021-05-07','1995-05-27','210','2027-03-18','Street5,Delhi,India','333','in');
 
 INSERT INTO Commits(IPC,Prisoner_id) VALUES(1,1);
 INSERT INTO Commits(IPC,Prisoner_id) VALUES(300,1);
@@ -143,7 +143,7 @@ INSERT INTO Commits(IPC,Prisoner_id) VALUES(191,2);
 INSERT INTO Commits(IPC,Prisoner_id) VALUES(3,3);
 INSERT INTO Commits(IPC,Prisoner_id) VALUES(415,3);
 
-INSERT INTO Visitor(Aadhaar, First_name, Last_name) VALUES (123456789123,'Vaibhav','Chopra');
-INSERT INTO Visit(Visitor_aadhaar, Date_visit, Time_slot, Prisoner_id) VALUES (123456789123,'2021-06-07','10AM-11AM',1);
+INSERT INTO Visitor(Aadhaar, First_name, Last_name) VALUES (123456789123,'SnapD','SnapD');
+INSERT INTO Visit(Visitor_aadhaar, Date_visit, Time_slot, Prisoner_id) VALUES (123456789123,'2021-06-07','10AM-11AM',1);s
 
 INSERT INTO Deleted_jailors(Jailor_id,Jailor_uname,Jailor_pwd,First_name,Last_name) VALUES (1,'jailor1','jailor1','Steve','Quay');
