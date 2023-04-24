@@ -17,7 +17,7 @@ The Prison Management System can be utilized in other areas such as law enforcem
 
       Clone the repository in htdocs: Create a new directory in the htdocs folder in the XAMPP installation directory. This directory will be used to store your PHP project files.
 
-      Create a new database: Open phpMyAdmin in your browser and create a new database that will be used by your PHP project, name of your db should be "prisondb"
+      Create a new database: Open phpMyAdmin in your browser and create a new database that will be used by your PHP project, name of your db should be "prisondb", copy/import the database.sql in prisondb
 
       Edit configuration files: Open the "php.ini" file and make sure that the "display_errors" setting is turned on, as this will allow you to see any errors that occur while running your PHP code.
 
