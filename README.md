@@ -1,6 +1,6 @@
 # Prison-Management-System
 
-#1.1 System Overview:
+## System Overview:
 
 Our Project ‘Prison Management System’ was ideated from the thought that there is no thorough
 system that captures the real essence of a criminal sentence period in jail, thus we have kept our
@@ -9,7 +9,7 @@ records, Jailor, Officer, Section etc..and many correctional facilities do not h
 cater to the vast magnitudes of requirements of criminals, and rely on manual management of
 critical data.
 
-#1.2 Objective & Motivation:
+## Objective & Motivation:
 
 The Main Objective of our Prison Management is to forge an integrated information management
 system for criminals where all of the required needs and information are met through easy-to-use
@@ -25,7 +25,7 @@ and design a system that has appropriate methodology, strategy, easy-to-understa
 easy-to-use, thus giving the people in charge of managing the criminals an opportunity to look at
 better results and reduce unnecessary overhead costs.
 
-#1.3 Applications
+## Applications
 
 Our Project ‘Prison Management System’ was ideated from the thought that there is no
 thorough system that captures the real essence of a criminal sentence period in jail, thus we
