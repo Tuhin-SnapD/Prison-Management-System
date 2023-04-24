@@ -13,23 +13,23 @@ Our motivation for the Prison Management System is to ensure a computerized orga
 The Prison Management System can be utilized in other areas such as law enforcement agencies, courts, and other correctional facilities. Our system is a collection of register cases for each prisoner entering the prison for an automated release diary generator. In developed countries of the world, people are already fighting on how prisoners can gain access to the internet in their cell room or their common room, and our system can be integrated with such advancements in the future.
 
 ## Installation and Usage
-- Install XAMPP
-            Download and install XAMPP from the Apache Friends website. XAMPP is a package that includes Apache, PHP, and MySQL.
+            - Install XAMPP
+                        Download and install XAMPP from the Apache Friends website. XAMPP is a package that includes Apache, PHP, and MySQL.
 
-- Clone the repository in htdocs
-            Create a new directory in the htdocs folder in the XAMPP installation directory. This directory will be used to store your PHP project files.
+            - Clone the repository in htdocs
+                        Create a new directory in the htdocs folder in the XAMPP installation directory. This directory will be used to store your PHP project files.
 
-- Create a new database
-            Open phpMyAdmin in your browser and create a new database that will be used by your PHP project, name of your db should be "prisondb", copy/import the database.sql in prisondb
+            - Create a new database
+                        Open phpMyAdmin in your browser and create a new database that will be used by your PHP project, name of your db should be "prisondb", copy/import the database.sql in prisondb
 
-- Edit configuration files
-            Open the "php.ini" file and make sure that the "display_errors" setting is turned on, as this will allow you to see any errors that occur while running your PHP code.
+            - Edit configuration files
+                        Open the "php.ini" file and make sure that the "display_errors" setting is turned on, as this will allow you to see any errors that occur while running your PHP code.
 
-- Start Apache and MySQL
-            Start Apache and MySQL using the XAMPP Control Panel.
+            - Start Apache and MySQL
+                        Start Apache and MySQL using the XAMPP Control Panel.
 
-- Run the code
-            Open your web browser and navigate to "http://localhost/Prison-Management-Portal". You should see the output of the PHP code.
+            - Run the code
+                        Open your web browser and navigate to "http://localhost/Prison-Management-Portal". You should see the output of the PHP code.
 
 ## Conclusion
 Our Prison Management System is a step towards modernizing the management of criminals in correctional facilities. By automating the management of critical data, our system will help to reduce errors, increase efficiency, and provide reliable information to those who need it. Our system is easy to use, secure, and can be integrated with other advancements in the future.
