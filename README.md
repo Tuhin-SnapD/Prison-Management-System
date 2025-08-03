@@ -1,35 +1,208 @@
 # Prison Management System
-## System Overview
-The Prison Management System is an integrated information management system for correctional facilities. It was ideated from the thought that there is no thorough system that captures the real essence of a criminal sentence period in jail. Our website is simple and suffices as it concentrates on essential features like prisoner, criminal records, jailor, officer, section, etc.
 
-Many correctional facilities do not have proper systems to cater to the vast magnitudes of requirements of criminals, and rely on manual management of critical data. Therefore, our system automates the management of critical data, reduces the likelihood of errors in manual entry, and provides reliable, timely, and accurate information to those who need it.
+A comprehensive web-based prison management system built with PHP and MySQL.
 
-## Objective & Motivation
-The main objective of our Prison Management System is to forge an easy-to-use and intuitive data aggregation system where all of the required needs and information are met for prisoners, and requests are automatically scaled and fulfilled according to the population of criminals. Our system is designed to have real-time access where updating any part of the database should mean the required change happens in the other parts of the system.
+## Features
 
-Our motivation for the Prison Management System is to ensure a computerized organization management system that replaces the current manual management systems used to monitor the data of prisoners. Our system ensures that the management task is eased and its performance, security, efficiency, and effectiveness are catered to. We are looking to create and design a system that has appropriate methodology, strategy, easy-to-understand, and easy-to-use, thus giving the people in charge of managing the criminals an opportunity to look at better results and reduce unnecessary overhead costs.
+- **Admin Management**: Add and manage officers, jailors, and visitors
+- **Officer Dashboard**: Manage prisoners, crimes, and prison operations
+- **Jailor Dashboard**: View and manage prisoners and sections
+- **Visitor Management**: Handle visitor registrations and visits
+- **Prisoner Management**: Track prisoner information, crimes, and status
 
-## Applications
-The Prison Management System can be utilized in other areas such as law enforcement agencies, courts, and other correctional facilities. Our system is a collection of register cases for each prisoner entering the prison for an automated release diary generator. In developed countries of the world, people are already fighting on how prisoners can gain access to the internet in their cell room or their common room, and our system can be integrated with such advancements in the future.
+## Setup Instructions
 
-## Installation and Usage
-            - Install XAMPP
-                        Download and install XAMPP from the Apache Friends website. XAMPP is a package that includes Apache, PHP, and MySQL.
+### Prerequisites
+- XAMPP (Apache + MySQL + PHP)
+- Web browser
 
-            - Clone the repository in htdocs
-                        Create a new directory in the htdocs folder in the XAMPP installation directory. This directory will be used to store your PHP project files.
+### Installation
 
-            - Create a new database
-                        Open phpMyAdmin in your browser and create a new database that will be used by your PHP project, name of your db should be "prisondb", copy/import the database.sql in prisondb
+1. **Clone/Download** the project to your XAMPP htdocs folder:
+   ```
+   C:\xampp\htdocs\PMS\Prison-Management-System\
+   ```
 
-            - Edit configuration files
-                        Open the "php.ini" file and make sure that the "display_errors" setting is turned on, as this will allow you to see any errors that occur while running your PHP code.
+2. **Database Setup**:
+   - Start XAMPP and ensure Apache and MySQL are running
+   - Open phpMyAdmin (http://localhost/phpmyadmin)
+   - Import the database schema from `config/database.sql`
+   - The database will be created as `prisondb`
 
-            - Start Apache and MySQL
-                        Start Apache and MySQL using the XAMPP Control Panel.
+3. **Configuration**:
+   - Database configuration is in `config/config.php`
+   - Default settings:
+     - Host: localhost
+     - Database: prisondb
+     - Username: root
+     - Password: (empty)
 
-            - Run the code
-                        Open your web browser and navigate to "http://localhost/Prison-Management-Portal". You should see the output of the PHP code.
+4. **Access the Application**:
+   - Navigate to: `http://localhost/PMS/Prison-Management-System/`
+   - The application will automatically redirect to the public directory
 
-## Conclusion
-Our Prison Management System is a step towards modernizing the management of criminals in correctional facilities. By automating the management of critical data, our system will help to reduce errors, increase efficiency, and provide reliable information to those who need it. Our system is easy to use, secure, and can be integrated with other advancements in the future.
+## User Accounts
+
+### Admin Login
+- Username: `admin`
+- Password: `password`
+
+### Officer Login
+- Username: `officer1`
+- Password: `officer1`
+
+### Jailor Login
+- Username: `jailor1`
+- Password: `jailor1`
+
+## Routing System
+
+The application uses a centralized routing system located in `public/index.php`. All pages are accessed through the `?page=` parameter:
+
+- `?page=home` - Home/About page
+- `?page=signin-admin` - Admin login
+- `?page=signin-officer` - Officer login
+- `?page=signin-jailor` - Jailor login
+- `?page=admin` - Admin dashboard
+- `?page=officer-dashboard` - Officer dashboard
+- `?page=jailor-dashboard` - Jailor dashboard
+
+## File Structure
+
+```
+Prison-Management-System/
+├── config/                 # Configuration files
+│   ├── config.php         # Main configuration
+│   └── database.sql       # Database schema
+├── public/                # Public entry point
+│   ├── index.php         # Main routing file
+│   ├── .htaccess         # URL rewriting rules
+│   └── assets/           # Static assets
+├── src/                   # Application source
+│   ├── controllers/      # Controller files
+│   ├── includes/         # Database and auth includes
+│   └── views/            # View templates
+└── README.md             # This file
+```
+
+## Database Views
+
+The system includes several database views that provide organized and filtered data for different user roles and reporting needs.
+
+### Dashboard_Stats View
+**Purpose**: Provides key statistics for the admin dashboard
+**Columns**:
+- `Total_Prisoners` - Count of all active prisoners
+- `Active_Jailors` - Count of active jailors
+- `Active_Officers` - Count of active officers
+- `Total_Sections` - Count of prison sections
+- `Today_Visits` - Number of visits scheduled for today
+- `Violent_Criminals` - Count of prisoners with violent crime categories
+- `High_Risk_Prisoners` - Count of prisoners with high risk levels
+
+**Usage**: Perfect for admin dashboard widgets and overview statistics
+
+### Section_Overview View
+**Purpose**: Provides comprehensive section information with occupancy data
+**Columns**:
+- `Section_id` - Section identifier
+- `Section_name` - Name of the section (A, B, C, etc.)
+- `Capacity` - Maximum capacity of the section
+- `Current_population` - Current number of prisoners
+- `Security_level` - Security classification (Minimum, Medium, Maximum, Super Maximum)
+- `Jailor_Name` - Full name of the assigned jailor
+- `Jailor_phone` - Contact number of the jailor
+- `Occupancy_Percentage` - Calculated occupancy percentage
+
+**Usage**: Ideal for jailor dashboards and section management screens
+
+### Prisoner_Details View
+**Purpose**: Comprehensive prisoner information with associated crimes and jailor details
+**Columns**:
+- `Prisoner_id` - Unique prisoner identifier
+- `Full_Name` - Complete name of the prisoner
+- `Date_in` - Date of admission
+- `Date_out` - Expected release date
+- `Status_inout` - Current status (in, out, transferred, etc.)
+- `Crime_category` - Category of crimes committed
+- `Risk_level` - Security risk assessment
+- `Section_name` - Assigned section
+- `Jailor_Name` - Responsible jailor
+- `Crimes` - Comma-separated list of all crimes
+- `Days_Remaining` - Days left until release
+
+**Usage**: Perfect for prisoner management screens and detailed prisoner reports
+
+### Visit_Schedule View
+**Purpose**: Organized visit information with visitor and prisoner details
+**Columns**:
+- `Visit_id` - Unique visit identifier
+- `Date_visit` - Scheduled visit date
+- `Time_slot` - Time slot for the visit
+- `Status` - Visit status (Scheduled, Completed, Cancelled, No-Show)
+- `Visitor_Name` - Full name of the visitor
+- `Visitor_Phone` - Visitor's contact number
+- `Relationship_with_prisoner` - Relationship to the prisoner
+- `Prisoner_Name` - Full name of the prisoner being visited
+- `Section_name` - Section where the prisoner is located
+
+**Usage**: Essential for visit management and scheduling screens
+
+## Recent Fixes
+
+### Routing Issues Fixed
+- ✅ Centralized routing system implemented
+- ✅ Fixed hardcoded relative paths in all controllers
+- ✅ Updated form actions to use proper routing
+- ✅ Fixed authentication redirects
+- ✅ Updated navigation links to use routing system
+- ✅ Fixed database connection paths
+- ✅ Added proper logout functionality
+
+### Security Improvements
+- ✅ Centralized database connection
+- ✅ Proper session management
+- ✅ Input sanitization functions
+- ✅ CSRF protection ready
+- ✅ Secure file access restrictions
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Database Connection Error**:
+   - Ensure MySQL is running in XAMPP
+   - Check database credentials in `config/config.php`
+   - Verify database `prisondb` exists
+
+2. **Page Not Found**:
+   - Ensure you're accessing through `public/index.php`
+   - Check that Apache mod_rewrite is enabled
+   - Verify `.htaccess` file is present
+
+3. **Login Issues**:
+   - Use the provided default credentials
+   - Check session configuration
+   - Clear browser cookies if needed
+
+## Development
+
+### Adding New Pages
+1. Add route in `public/index.php`
+2. Create controller file in `src/controllers/`
+3. Update navigation links to use `?page=your-page`
+
+### Database Changes
+1. Update `config/database.sql`
+2. Modify relevant includes in `src/includes/database/`
+3. Update controllers as needed
+
+## License
+
+This project is for educational purposes.
+
+## Contributors
+
+- Ayuj
+- Tuhin
+- Anish
