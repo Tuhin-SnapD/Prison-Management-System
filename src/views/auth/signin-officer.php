@@ -1,5 +1,5 @@
 <?php
-    require "../src/views/layouts/header.php";
+    require "../src/views/layouts/header_unified.php";
 ?>
 
 <div class="flex items-center justify-center bg-gray-50 pt-12 pb-56 px-4 sm:px-6 lg:px-8">
@@ -12,17 +12,17 @@
          echo' <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-red-600">
           Empty fields!!       
           </h2>';
-        }elseif($_GET['error']=="sqlerror"){
+        }elseif($_GET['error']=="wrongcredentials"){
           echo'<h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-red-600">
-          sql database connection error!!       
+          Wrong username or password!!       
           </h2>';
-        }elseif($_GET['error']=="wrongpassword"){
+        }elseif($_GET['error']=="dberror"){
           echo'<h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-red-600">
-          Wrong password!!       
+          Database connection error!!       
           </h2>';
-        }elseif($_GET['error']=="usernotfound"){
+        }elseif($_GET['error']=="invalidtype"){
           echo '<h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-red-600">
-          User Not Found!!       
+          Invalid user type!!       
           </h2>';
         }
         }
@@ -40,7 +40,8 @@
         -->
       </p>
     </div>
-    <form class="mt-8" action="?page=officer-login" method="POST">
+    <form class="mt-8" action="?page=unified-login" method="POST">
+      <input type="hidden" name="user_type" value="officer">
       <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm">
         <div>

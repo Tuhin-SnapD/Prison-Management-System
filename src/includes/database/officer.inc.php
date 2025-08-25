@@ -1,79 +1,61 @@
 <?php
-    if(isset($_POST['officer_add'])){
-      require 'dbh.inc.php';
-     // $officer_id=$_POST['officer_id']; //officer id not defined in the input yet
-      $f_name=$_POST['f_name'];
-      $l_name=$_POST['l_name'];
-      $dob=$_POST['dob'];
-      $title=$_POST['title'];
-      $mob_number=$_POST['mob_number'];
-      $username=$_POST['username'];
-      $password=$_POST['password'];
-      $cfmpassword=$_POST['cfmpassword'];
 
-      if(empty($f_name)||empty($l_name)||empty($dob)||empty($title)||empty($mob_number)||empty($username)||empty($password)||empty($cfmpassword)){   
+if (isset($_POST['officer_add'])) {
+    require 'dbh.inc.php';
+
+    $f_name = $_POST['f_name'];
+    $l_name = $_POST['l_name'];
+    $dob = $_POST['dob'];
+    $title = $_POST['title'];
+    $mob_number = $_POST['mob_number'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $cfmpassword = $_POST['cfmpassword'];
+
+    if (empty($f_name) || empty($l_name) || empty($dob) || empty($title) || empty($mob_number) || empty($username) || empty($password) || empty($cfmpassword)) {
         header("Location: ../../public/?page=officer&error=emptyfields");
         exit();
-    } else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
-      header("Location: ../../public/?page=officer&error=invaliduid&uid=".$username);
-       exit();
-   } else if($password !== $cfmpassword){
-    header("Location: ../../public/?page=officer&error=passwordnotmatched&uid=".$username);
-    exit();
-  } else{
-    $sql="SELECT Officer_uname FROM Officer WHERE Officer_uname=?";
-    $stmt=mysqli_stmt_init($conn);
-      if(!mysqli_stmt_prepare($stmt,$sql)){
-        header("Location: ../../public/?page=officer&error=sqlerror");
+    }
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        header("Location: ../../public/?page=officer&error=invaliduid&uid=" . $username);
         exit();
-        } else{
-          mysqli_stmt_bind_param($stmt,"s",$username);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_store_result($stmt);
-                $resultCheck= mysqli_stmt_num_rows($stmt);
-                if($resultCheck>0){
-                    header("Location: ../../public/?page=officer&error=sameuserexistserror");
-                    exit();
-                }
-                else{
-                 
-                  $sql1="INSERT INTO Officer (Officer_uname, Officer_pwd, First_name, Last_name, Title, Date_of_birth) VALUES (?,?,?,?,?,?) ";
-                          $stmt1=mysqli_stmt_init($conn);
-                          if(!mysqli_stmt_prepare($stmt1,$sql1)){
-                              header("Location: ../../public/?page=officer&error=sqlerror");
-                              exit();
-                          }else{
-                              //hashing the password:
-                              mysqli_stmt_bind_param($stmt1,"ssssss",$username,$password,$f_name,$l_name,$title,$dob);
-                              mysqli_stmt_execute($stmt1);
-                             
-                              //exit();
-          
-                          }
-                           //getting the officer id of the officer just added:
-                            $sql="SELECT Officer_id FROM Officer ORDER BY Officer_id DESC LIMIT 1 ";
-                             $result=mysqli_query($conn,$sql);
-                              $officer_id=mysqli_fetch_row($result);
-                              
-                          $sql2="INSERT INTO Officer_phone(Officer_phone,Officer_id ) VALUES ('$mob_number','$officer_id[0]') ";
-                          if(!mysqli_query($conn,$sql2)){
-                            header("Location: ../../public/?page=successofficer&insert=sqlerror");
-                            
-                            exit();
-                          }
-                         
-                          else{
-                          header("Location: ../../public/?page=successofficer&insert=success");
-                          exit();
-                         }
-                  
-                        }
-        } 
-      }
- }else{
-        header("Location: ../../public/?page=officer&error=clickonsignupbtnerror");
+    }
+    if ($password !== $cfmpassword) {
+        header("Location: ../../public/?page=officer&error=passwordnotmatched&uid=" . $username);
         exit();
-
     }
 
+    $sql = "SELECT Officer_uname FROM Officer WHERE Officer_uname = :username";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['username' => $username]);
 
+    if ($stmt->rowCount() > 0) {
+        header("Location: ../../public/?page=officer&error=sameuserexistserror");
+        exit();
+    }
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql1 = "INSERT INTO Officer (Officer_uname, Officer_pwd, First_name, Last_name, Title, Date_of_birth) VALUES (:username, :password, :f_name, :l_name, :title, :dob)";
+    $stmt1 = $pdo->prepare($sql1);
+    $stmt1->execute([
+        'username' => $username,
+        'password' => $hashed_password,
+        'f_name' => $f_name,
+        'l_name' => $l_name,
+        'title' => $title,
+        'dob' => $dob
+    ]);
+
+    $officer_id = $pdo->lastInsertId();
+
+    $sql2 = "INSERT INTO Officer_phone(Officer_phone, Officer_id) VALUES (:mob_number, :officer_id)";
+    $stmt2 = $pdo->prepare($sql2);
+    $stmt2->execute(['mob_number' => $mob_number, 'officer_id' => $officer_id]);
+
+    header("Location: ../../public/?page=successofficer&insert=success");
+    exit();
+} else {
+    header("Location: ../../public/?page=officer&error=clickonsignupbtnerror");
+    exit();
+}

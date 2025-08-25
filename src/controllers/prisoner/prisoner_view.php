@@ -1,14 +1,14 @@
 <?php
-    require_once SRC_PATH . '/views/layouts/header.php';
-    if(isset($_SESSION['userUidOfficer'] )||isset( $_SESSION['userUidJailor'])){
+require_once SRC_PATH . '/views/layouts/header_unified.php';
 
-    include_once SRC_PATH . '/includes/database/dbh.inc.php';
-    //require'header.php';
-    }else{
-        header("Location: ?page=home&error=unauthorized");
-        exit();
-    }
-    ?>
+// Check if user is logged in and has jailor role
+if (!$auth->isLoggedIn() || !$auth->hasRole('jailor')) {
+    redirect('home');
+}
+
+include_once SRC_PATH . '/includes/database/dbh.inc.php';
+//require'header.php';
+?>
   <form action="../../includes/database/prisoner_view.inc.php" method="post">
   <div class="flex flex-col h-screen">
     <section class="text-gray-700 body-font relative flex-grow">

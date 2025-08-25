@@ -1,5 +1,5 @@
 <?php 
-require "../src/views/layouts/header.php";
+require "../src/views/layouts/header_unified.php";
 ?>
 <div class="flex flex-col h-screen">
 <section class="text-gray-700 body-font">

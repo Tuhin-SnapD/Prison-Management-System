@@ -1,13 +1,10 @@
 <?php
-    require_once SRC_PATH . "/views/layouts/header.php";
-    if(isset($_SESSION['userUidOfficer'])){
+require_once SRC_PATH . "/views/layouts/header_unified.php";
 
-    include_once 'includes/dbh.inc.php';
-    //require'header.php';
-    }else{
-        header("Location: ?page=home&error=unauthorized");
-        exit();
-    }
+// Check if user is logged in and has officer role
+if (!$auth->isLoggedIn() || !$auth->hasRole('officer')) {
+    redirect('home');
+}
 
    
     $sql="SELECT * FROM Crime as F INNER JOIN Commits as A ON A.IPC=F.IPC INNER JOIN Prisoner as P on P.Prisoner_id = A.Prisoner_id ;";

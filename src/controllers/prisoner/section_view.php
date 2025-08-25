@@ -1,12 +1,13 @@
 <?php
-    require_once SRC_PATH . "/views/layouts/header.php";
-    if(isset($_SESSION['userUidOfficer']) ||isset($_SESSION['userUidJailor'])){
+require_once SRC_PATH . "/views/layouts/header_unified.php";
+
+// Check if user is logged in and has jailor role
+if (!$auth->isLoggedIn() || !$auth->hasRole('jailor')) {
+    redirect('home');
+}
+
 
     include_once SRC_PATH . '/includes/database/dbh.inc.php';
-    }else{
-        header("Location: ?page=home&error=unauthorized");
-        exit();
-    }
 
 
     $sql="SELECT S.Section_id ,S.Section_name,S.Jailor_id ,J.First_name, J.Last_name,JP.Jailor_phone FROM Section AS S INNER JOIN Jailor AS J ON J.Jailor_id=S.Jailor_id INNER JOIN Jailor_phone AS JP ON J.Jailor_id=JP.Jailor_id";

@@ -1,5 +1,5 @@
-<?php
-require "../src/views/layouts/header.php";
+<?php 
+require "../src/views/layouts/header_unified.php";
 ?>
     <!-- hero -->
     <div class="hero bg-gray-100 py-16 h-screen">

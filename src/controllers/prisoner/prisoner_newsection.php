@@ -1,5 +1,11 @@
-<?php 
-require_once SRC_PATH . "/views/layouts/header.php";
+<?php
+require_once SRC_PATH . "/views/layouts/header_unified.php";
+
+// Check if user is logged in and has jailor role
+if (!$auth->isLoggedIn() || !$auth->hasRole('jailor')) {
+    redirect('home');
+}
+
 if(isset($_SESSION['userUidOfficer'])){
   if(isset($_GET['error'])){
     if($_GET['error']=="emptyfields"){

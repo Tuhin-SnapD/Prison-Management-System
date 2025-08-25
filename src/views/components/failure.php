@@ -1,5 +1,5 @@
 <?php 
-require '../layouts/header.php';
+require '../layouts/header_unified.php';
 echo' <div class="hero bg-gray-100 py-16 h-screen">
       <!-- container -->
       <div class="container px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">

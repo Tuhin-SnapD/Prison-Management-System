@@ -1,15 +1,12 @@
 <?php
-    require_once SRC_PATH . "/views/layouts/header.php";
-    if(isset($_SESSION['userUidOfficer'])){
+require_once SRC_PATH . "/views/layouts/header_unified.php";
 
-    include_once SRC_PATH . "/includes/database/dbh.inc.php";
-    //require'header.php';
-    }else{
-        header("Location: ?page=home&error=unauthorized");
-        exit();
-    }
+// Check if user is logged in and has officer role
+if (!$auth->isLoggedIn() || !$auth->hasRole('officer')) {
+    redirect('home');
+}
 
-    //require 'header.php';
+//require'header.php';
   
     $sql="SELECT * FROM Crime";
     $result=mysqli_query($conn,$sql);

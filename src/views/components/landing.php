@@ -1,5 +1,5 @@
 <?php 
-require "../src/views/layouts/header.php";
+require "../src/views/layouts/header_unified.php";
 ?>
 
 <!-- Hero Section -->

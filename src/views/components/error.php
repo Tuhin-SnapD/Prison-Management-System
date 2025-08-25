@@ -1,5 +1,5 @@
-<?php
-require_once SRC_PATH . '/views/layouts/header.php';
+<?php 
+require_once SRC_PATH . '/views/layouts/header_unified.php';
 ?>
 
 <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

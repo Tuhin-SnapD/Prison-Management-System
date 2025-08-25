@@ -1,15 +1,13 @@
 <?php
-    require_once SRC_PATH . '/views/layouts/header.php';
-    if(isset($_SESSION['userUidAdmin'])){
+    require_once SRC_PATH . '/views/layouts/header_unified.php';
+    
+    // Check if user is logged in and has admin role
+    if (!$auth->isLoggedIn() || !$auth->hasRole('admin')) {
+        redirect('home');
+    }
 
     include_once SRC_PATH . '/includes/database/dbh.inc.php';
-    //require'header.php';
-    }else{
-        header("Location: ?page=home");
-        exit();
-    }
-   
-    ?>
+?>
 <section class="text-gray-700 body-font">
       <div class="container px-5 py-24 mx-auto">
         <div class="font-medium title-font text-center text-gray-900 mb-20">

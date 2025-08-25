@@ -20,7 +20,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <?php include SRC_PATH . '/views/layouts/header.php'; ?>
+    <?php include SRC_PATH . '/views/layouts/header_unified.php'; ?>
     
     <!-- Main Content -->
     <main class="container-fluid py-4">

@@ -1,9 +1,12 @@
 <?php
-require_once SRC_PATH . "/views/layouts/header.php";
-    
+require_once SRC_PATH . "/views/layouts/header_unified.php";
 
-    if(isset($_SESSION['userUidOfficer'])){
-      echo'<section class="text-gray-700 body-font">
+// Check if user is logged in and has officer role
+if (!$auth->isLoggedIn() || !$auth->hasRole('officer')) {
+    redirect('home');
+}
+
+echo'<section class="text-gray-700 body-font">
       <div class="container px-5 py-14 mx-auto">
         <div class="font-medium title-font text-center text-gray-900 mb-20">
         <h1 class="text-3xl">
@@ -234,29 +237,6 @@ require_once SRC_PATH . "/views/layouts/header.php";
         </div>
       </div>
     </section>';
-    }else{
-      echo' <div class="hero bg-gray-100 py-16 h-screen">
-      <!-- container -->
-      <div class="container px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">
-          <!-- hero wrapper -->
-          <div class="hero-wrapper grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-
-              <!-- hero text -->
-              <div class="hero-text col-span-6">
-                  <h1 class=" font-bold text-4xl md:text-5xl max-w-xl text-gray-900 leading-tight">Operation Failed</h1>
-                  <hr class=" w-12 h-1 bg-indigo-500 rounded-full mt-8">
-                  <p class="text-gray-800 text-base leading-relaxed mt-8 font-semibold">Access Denied</p>
-
-              </div>
-
-              <!-- hero image -->
-              <div class="hero-image col-span-6">
-                  <img src="assets/images/failure.svg" alt="">
-              </div>
-          </div>
-      </div>
-  </div>';
-    }
 ?>
 
 <footer class="text-gray-700 body-font" style=" left: 0; bottom: 0;width: 100%; text-align: center;">

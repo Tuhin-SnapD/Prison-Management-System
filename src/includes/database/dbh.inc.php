@@ -5,22 +5,16 @@
  * Centralized database connection using PDO with improved security
  */
 
-// Include configuration
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/config/config.php';
-
 // Get database connection
-$pdo = getDBConnection();
-
-// Legacy mysqli connection for backward compatibility
-$servername = DB_HOST;
-$username = DB_USER;
-$password = DB_PASS;
-$dbname = DB_NAME;
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Note: config.php is already included in init.php, so getDBConnection() should be available
+if (function_exists('getDBConnection')) {
+    $pdo = getDBConnection();
+} else {
+    // Fallback if function doesn't exist (shouldn't happen in normal flow)
+    die("Database configuration not loaded. Please ensure init.php is included first.");
 }
-?>
 
+// The legacy mysqli connection ($conn) has been removed to enforce the use of PDO.
+// All database interactions should now use the $pdo object with prepared statements
+// to prevent SQL injection vulnerabilities.
+?>
